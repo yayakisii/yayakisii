@@ -18,14 +18,14 @@
 
 		<!-- Header -->
 			<header id="header">
-				<h1><a href="index.html">Retrospect</a></h1>
+				<h1><a href="index.php">エンジニアのための人員配置サービス</a></h1>
 				<a href="#nav">Menu</a>
 			</header>
 
 		<!-- Nav -->
 			<nav id="nav">
 				<ul class="links">
-					<li><a href="index.html">トップ</a></li>
+					<li><a href="index.php">トップ</a></li>
 					<li><a href="generic.php">社員情報入力</a></li>
 					<li><a href="elements.html">欲しい人材を探す</a></li>
 				</ul>
