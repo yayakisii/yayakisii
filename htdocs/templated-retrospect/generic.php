@@ -51,7 +51,7 @@
 						<input type="text" name="name"><br><br>
 						パスワード
 						<input type="password" name="pw"><br><br>
-						顔画像のファイル名を入力してください
+						顔画像のファイル名を入力してください<br>
 						<input size="30" type="file" name="photo"><br><br>
 						役職
 						<select name="post">

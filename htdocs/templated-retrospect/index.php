@@ -78,10 +78,86 @@
 						<h2>人材検索</h2>
 						<p>条件を入力してください。</p>
 					</header>
+			<form action="result.php" method="get">
+				
+					<p>スキル検索(3つまで選べます)</p>
+					<?php
+						$dsn = 'mysql:dbname=yayakasii;host=localhost:8889';
+						$user = 'root';
+						$password = 'root';
+						try{
+						    $dbh = new PDO($dsn, $user, $password);
+
+						    $dbh->query('SET NAMES utf8');
+
+						    $sql = 'select * from tools';
+						    //一つ目のスキル
+						    echo "<select name='skill1'>";
+						    echo "<option value='0'>選択されていません";
+						    foreach ($dbh->query($sql) as $row) {
+						    	/*echo "<input type='checkbox' name='tools' value='" . $row['tool_id'] . "'>";
+						        print($row['tool_name']);*/
+						        echo "<option value='".$row['tool_id']."'>".$row['tool_name'];
+						    }
+						    echo "</select>&nbsp;&nbsp;&nbsp;&nbsp;";
+						    //二つ目のスキル
+						    echo "<select name='skill2'>";
+						    echo "<option value='0'>選択されていません";
+						    foreach ($dbh->query($sql) as $row) {
+						    	/*echo "<input type='checkbox' name='tools' value='" . $row['tool_id'] . "'>";
+						        print($row['tool_name']);*/
+						        echo "<option value='".$row['tool_id']."'>".$row['tool_name'];
+						    }
+						    echo "</select>&nbsp;&nbsp;&nbsp;&nbsp;";
+						    //三つ目のスキル
+						    echo "<select name='skill3'>";
+						    echo "<option value='0'>選択されていません";
+						    foreach ($dbh->query($sql) as $row) {
+						    	/*echo "<input type='checkbox' name='tools' value='" . $row['tool_id'] . "'>";
+						        print($row['tool_name']);*/
+						        echo "<option value='".$row['tool_id']."'>".$row['tool_name'];
+						    }
+						    echo "</select>&nbsp;&nbsp;&nbsp;&nbsp;";
+						    }catch (PDOException $e){
+							    print('Error:'.$e->getMessage());
+							    die();
+							}
+					?>
+					<br><br><br>
+					<p>職種を選んでください</p>
+					<?php
+						$dsn = 'mysql:dbname=yayakasii;host=localhost:8889';
+						$user = 'root';
+						$password = 'root';
+						try{
+						    $dbh = new PDO($dsn, $user, $password);
+
+						    $dbh->query('SET NAMES utf8');
+
+						    $sql = 'select * from occupation';
+						    
+						    echo "<select name='occupation'>";
+						    echo "<option value='0'>選択されていません";
+						    foreach ($dbh->query($sql) as $row) {
+						    	/*echo "<input type='checkbox' name='tools' value='" . $row['tool_id'] . "'>";
+						        print($row['tool_name']);*/
+						        echo "<option value='".$row['occupation_id']."'>".$row['occupation_name'];
+						    }
+						    echo "</select>";
+						    }catch (PDOException $e){
+							    print('Error:'.$e->getMessage());
+							    die();
+							}
+					?>
+
+				
+				<br><br><br>
+
+				<input type="submit" value="結果へ" class="big button alt">
+
+			</form>
 					
-					<ul class="actions">
-						<li><a href="#" class="button big alt">結果へ</a></li>
-					</ul>
+					
 				</div>
 			</section>
 
