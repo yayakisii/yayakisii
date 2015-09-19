@@ -3,12 +3,18 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: 2015 年 9 月 19 日 12:34
+-- Generation Time: 2015 年 9 月 19 日 16:56
 -- サーバのバージョン： 5.5.42
 -- PHP Version: 5.6.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `yayakasii`
@@ -34,13 +40,8 @@ CREATE TABLE `main` (
   `wish` text NOT NULL COMMENT '本人の希望',
   `project` text NOT NULL COMMENT '参加したプロジェクト',
   `memo` text NOT NULL COMMENT '面談メモ'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
---
--- 挿入前にテーブルを空にする `main`
---
-
-TRUNCATE TABLE `main`;
 --
 -- テーブルのデータのダンプ `main`
 --
@@ -48,7 +49,59 @@ TRUNCATE TABLE `main`;
 INSERT INTO `main` (`staff_id`, `name`, `pw`, `post`, `work_experience`, `tools`, `learning_level`, `wish`, `project`, `memo`) VALUES
 (1, 'admin', 'admin', '1', '2 3', '', '', '', '', ''),
 (2, 'aaaa', 'aaaa', '2', '', '3 5 12 20', '1 1 1 1', '2', '1 2', '特になしー'),
-(3, 'bbbb', 'bbbb', '2', '', '4 20', '4 4', '3', '2 3', '');
+(3, 'bbbb', 'bbbb', '2', '', '4 20', '4 4', '3', '2', ''),
+(4, 'cccc', 'cccc', '3', '1 2', '30 1 3 2', '2 3 4 1', '2', '1', '');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `occupation`
+--
+
+DROP TABLE IF EXISTS `occupation`;
+CREATE TABLE `occupation` (
+  `occupation_id` int(11) NOT NULL,
+  `occupation_name` text NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `occupation`
+--
+
+INSERT INTO `occupation` (`occupation_id`, `occupation_name`) VALUES
+(1, 'マーケティング'),
+(2, 'セールス'),
+(3, 'コンサルタント'),
+(4, 'ITアーキティクト'),
+(5, 'プロジェクトマネジメント'),
+(6, 'ITスペシャリスト'),
+(7, 'アプリケーションスペシャリスト'),
+(8, 'ソフトウェアディベロップメント'),
+(9, 'カスタマーサービス'),
+(10, 'ITサービスマネジメント'),
+(11, 'エデュケーション');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `post`
+--
+
+DROP TABLE IF EXISTS `post`;
+CREATE TABLE `post` (
+  `post_id` int(11) NOT NULL,
+  `post_name` text NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `post`
+--
+
+INSERT INTO `post` (`post_id`, `post_name`) VALUES
+(1, '部長'),
+(2, 'リーダ'),
+(3, 'マネージャ'),
+(4, 'エンジニア');
 
 -- --------------------------------------------------------
 
@@ -59,6 +112,7 @@ INSERT INTO `main` (`staff_id`, `name`, `pw`, `post`, `work_experience`, `tools`
 DROP TABLE IF EXISTS `project`;
 CREATE TABLE `project` (
   `project_id` int(11) NOT NULL,
+  `project_name` text NOT NULL,
   `start` date NOT NULL,
   `end` date NOT NULL,
   `member` text NOT NULL,
@@ -67,17 +121,12 @@ CREATE TABLE `project` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- 挿入前にテーブルを空にする `project`
---
-
-TRUNCATE TABLE `project`;
---
 -- テーブルのデータのダンプ `project`
 --
 
-INSERT INTO `project` (`project_id`, `start`, `end`, `member`, `content`, `tools`) VALUES
-(1, '2015-09-01', '2015-09-11', '1 2', '1', '20'),
-(2, '2015-09-15', '2015-09-18', '2 3', '2', '20 4');
+INSERT INTO `project` (`project_id`, `project_name`, `start`, `end`, `member`, `content`, `tools`) VALUES
+(1, 'プロジェクトA', '2015-09-01', '2015-09-11', '1 2', '1', '20'),
+(2, 'プロジェクトX', '2015-09-15', '2015-09-18', '2 3', '2', '20 4');
 
 -- --------------------------------------------------------
 
@@ -91,11 +140,6 @@ CREATE TABLE `tools` (
   `tool_name` text NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
---
--- 挿入前にテーブルを空にする `tools`
---
-
-TRUNCATE TABLE `tools`;
 --
 -- テーブルのデータのダンプ `tools`
 --
@@ -171,6 +215,18 @@ ALTER TABLE `main`
   ADD PRIMARY KEY (`staff_id`);
 
 --
+-- Indexes for table `occupation`
+--
+ALTER TABLE `occupation`
+  ADD PRIMARY KEY (`occupation_id`);
+
+--
+-- Indexes for table `post`
+--
+ALTER TABLE `post`
+  ADD PRIMARY KEY (`post_id`);
+
+--
 -- Indexes for table `project`
 --
 ALTER TABLE `project`
@@ -190,7 +246,17 @@ ALTER TABLE `tools`
 -- AUTO_INCREMENT for table `main`
 --
 ALTER TABLE `main`
-  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `occupation`
+--
+ALTER TABLE `occupation`
+  MODIFY `occupation_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `post`
+--
+ALTER TABLE `post`
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `project`
 --
@@ -201,3 +267,6 @@ ALTER TABLE `project`
 --
 ALTER TABLE `tools`
   MODIFY `tool_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=59;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
