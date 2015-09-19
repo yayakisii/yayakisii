@@ -27,7 +27,7 @@
 				<ul class="links">
 					<li><a href="index.php">トップ</a></li>
 					<li><a href="generic.php">社員情報入力</a></li>
-					<li><a href="elements.html">欲しい人材を探す</a></li>
+					<li><a href="index.php#two">欲しい人材を探す</a></li>
 				</ul>
 			</nav>
 
