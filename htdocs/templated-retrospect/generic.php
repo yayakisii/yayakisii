@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<title>社員情報入力</title>
-		<meta charset="utf-8" />
+		<meta charset="utf8">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -26,7 +26,7 @@
 			<nav id="nav">
 				<ul class="links">
 					<li><a href="index.html">トップ</a></li>
-					<li><a href="generic.html">社員情報入力</a></li>
+					<li><a href="generic.php">社員情報入力</a></li>
 					<li><a href="elements.html">欲しい人材を探す</a></li>
 				</ul>
 			</nav>
@@ -41,10 +41,59 @@
 					</header>
 
 					<a href="#" class="image fit"><img src="images/pic11.jpg" alt="" /></a>
-					
 
 				</div>
+
+				<form action="input.php" method = "get">
+						社員ID
+						<input type="text" name="staff_id"><br>
+						氏名
+						<input type="text" name="name"><br>
+						パスワード
+						<input type="text" name="pw"><br>
+						顔画像のファイル名を入力してください
+						<input size="30" type="file" name="photo"><br>
+						役職
+						<select name="post">
+							<option value="1">部長</option>
+							<option value="2">マネージャー</option>
+							<option value="3">リーダー</option>
+							<option value="4">スタッフ</option>
+						</select><br>
+
+						職歴<br>
+							<input type="checkbox" name="work_experience" value="1">マーケティング
+							<?php
+							$dsn = 'mysql:dbname=yayakasii;host=localhost:8889';
+							$user = 'root';
+							$password = 'root';
+							try{
+							    $dbh = new PDO($dsn, $user, $password);
+
+							    $dbh->query('SET NAMES utf8');
+
+							    $sql = 'select * from occupation';
+							    foreach ($dbh->query($sql) as $row) {
+							        print($row['occupation_name'].'<br>');
+							    }
+							}catch (PDOException $e){
+							    print('Error:'.$e->getMessage());
+							    die();
+							}
+
+							$dbh = null;
+							?>	
+						
+						
+						
+						
+
+				</form>
 			</section>
+
+			
+
+			<form>
 
 		<!-- Footer -->
 			<footer id="footer">
@@ -70,6 +119,8 @@
 					</ul>
 				</div>
 			</footer>
+
+
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
