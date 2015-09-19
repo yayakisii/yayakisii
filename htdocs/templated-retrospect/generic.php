@@ -84,6 +84,11 @@
 							$dbh = null;
 							?><br>
 
+						<table>
+						<tr>
+							<th>スキル</th>
+							<th>習熟度</th>
+						</tr>
 						ITスキル<br>
 							<?php
 							$dsn = 'mysql:dbname=yayakasii;host=localhost:8889';
@@ -95,23 +100,81 @@
 							    $dbh->query('SET NAMES utf8');
 
 							    $sql = 'select * from tools';
-							    $num = 0;
+							    //一つ目のスキルと習熟度
+							    echo "<tr>";
+							    echo "<td>";
+							    echo "<select name='tool1'>";
+							    echo "<option value='0'>選択されていません";
 							    foreach ($dbh->query($sql) as $row) {
-							    	echo "<input type='checkbox' name='tools' value='" . $row['tool_id'] . "'>";
-							        print($row['tool_name']);
-							        $num++;	
-							        if($num == 5){
-							        	echo "<br>";
-							        	$num = 0;
-							        }
+							    	/*echo "<input type='checkbox' name='tools' value='" . $row['tool_id'] . "'>";
+							        print($row['tool_name']);*/
+							        echo "<option value='".$row['tool_id']."'>".$row['tool_name'];
 							    }
+							    echo "</select>";
+							    echo "</td>";
+							    echo "<td>";
+							    echo "<select name='level1'>";
+							    	echo "<option value='0'>全く使ったことがない";
+							    	echo "<option value='1'>レベル１";
+							    	echo "<option value='2'>レベル２";
+							    	echo "<option value='3'>レベル３";
+							    	echo "<option value='4'>レベル４";
+							    	echo "<option value='5'>レベル５";
+							    echo "</select>";
+							    echo "</tr>";
+
+							    //二つ目のスキルと習熟度
+							    echo "<tr>";
+							    echo "<td>";
+							    echo "<select name='tool2'>";
+							    echo "<option value='0'>選択されていません";
+							    foreach ($dbh->query($sql) as $row) {
+							    	/*echo "<input type='checkbox' name='tools' value='" . $row['tool_id'] . "'>";
+							        print($row['tool_name']);*/
+							        echo "<option value='".$row['tool_id']."'>".$row['tool_name'];
+							    }
+							    echo "</select>";
+							    echo "</td>";
+							    echo "<td>";
+							    echo "<select name='level2'>";
+							    	echo "<option value='0'>全く使ったことがない";
+							    	echo "<option value='1'>レベル１";
+							    	echo "<option value='2'>レベル２";
+							    	echo "<option value='3'>レベル３";
+							    	echo "<option value='4'>レベル４";
+							    	echo "<option value='5'>レベル５";
+							    echo "</select>";
+							    echo "</tr>";
+
+							    //三つ目のスキルと習熟度
+							    echo "<tr>";
+							    echo "<td>";
+							    echo "<select name='tool3'>";
+							    echo "<option value='0'>選択されていません";
+							    foreach ($dbh->query($sql) as $row) {
+							    	/*echo "<input type='checkbox' name='tools' value='" . $row['tool_id'] . "'>";
+							        print($row['tool_name']);*/
+							        echo "<option value='".$row['tool_id']."'>".$row['tool_name'];
+							    }
+							    echo "</select>";
+							    echo "</td>";
+							    echo "<td>";
+							    echo "<select name='level3'>";
+							    	echo "<option value='0'>全く使ったことがない";
+							    	echo "<option value='1'>レベル１";
+							    	echo "<option value='2'>レベル２";
+							    	echo "<option value='3'>レベル３";
+							    	echo "<option value='4'>レベル４";
+							    	echo "<option value='5'>レベル５";
+							    echo "</select>";
+							    echo "</tr>";
 							}catch (PDOException $e){
 							    print('Error:'.$e->getMessage());
 							    die();
 							}
 
 							$dbh = null;
-							?><br><br>
+							?></table><br>
 
 						やりたいプロジェクト内容<br>
 						<textarea name="project" cols="50" rows="5"></textarea><br><br>
