@@ -18,7 +18,6 @@
 
 		<!-- Header -->
 			<header id="header" class="alt">
-				<h1><a href="index.php">エンジニアのための人員配置サービス</a></h1>
 				<a href="#nav">Menu</a>
 			</header>
 
@@ -33,12 +32,12 @@
 
 		<!-- Banner -->
 			<section id="banner">
-				<h2>人員配置サービス</h2>
+				<h2>人員配置支援サービス</h2>
 				<p>for engineer</p>
 				<!--<ul class="actions">
 					<li><a href="#" class="button big special">人材を探してみる</a></li>
 				</ul>-->
-				<p>当サイトはシステム開発会社向けのサイトです。プロジェクトなどでの人員配置に役立ててください</p>
+				当サイトはシステム開発会社向けのサイトです。<br>プロジェクトなどでの人員配置に役立ててください
 			</section>
 
 		<!-- One -->

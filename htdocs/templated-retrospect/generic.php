@@ -18,7 +18,6 @@
 
 		<!-- Header -->
 			<header id="header">
-				<h1><a href="index.php">エンジニアのための人員配置サービス</a></h1>
 				<a href="#nav">Menu</a>
 			</header>
 
@@ -61,7 +60,7 @@
 							<option value="4">スタッフ</option>
 						</select><br><br>
 
-						職歴<br>
+						職種<br>
 							<?php
 							$dsn = 'mysql:dbname=yayakasii;host=localhost:8889';
 							$user = 'root';
@@ -194,30 +193,7 @@
 
 			<form>
 
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="inner">
-					<ul class="icons">
-						<li><a href="#" class="icon fa-facebook">
-							<span class="label">Facebook</span>
-						</a></li>
-						<li><a href="#" class="icon fa-twitter">
-							<span class="label">Twitter</span>
-						</a></li>
-						<li><a href="#" class="icon fa-instagram">
-							<span class="label">Instagram</span>
-						</a></li>
-						<li><a href="#" class="icon fa-linkedin">
-							<span class="label">LinkedIn</span>
-						</a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; Untitled.</li>
-						<li>Images: <a href="http://unsplash.com">Unsplash</a>.</li>
-						<li>Design: <a href="http://templated.co">TEMPLATED</a>.</li>
-					</ul>
-				</div>
-			</footer>
+		
 
 
 
