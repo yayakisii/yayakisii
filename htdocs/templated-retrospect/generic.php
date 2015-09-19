@@ -40,7 +40,7 @@
 						<p>ここではエンジニアの名前やスキルなどの情報を入力してください</p>
 					</header>
 
-					<a href="#" class="image fit"><img src="images/pic11.jpg" alt="" /></a>
+					<a href="#" class="image fit"><img src="images/inputimage.jpg" alt="" /></a>
 
 				</div>
 
@@ -83,7 +83,7 @@
 
 							$dbh = null;
 							?><br>
-
+					<div class="skilltable">
 						<table>
 						<tr>
 							<th>スキル</th>
@@ -175,6 +175,7 @@
 
 							$dbh = null;
 							?></table><br>
+					</div>
 
 						やりたいプロジェクト内容<br>
 						<textarea name="project" cols="50" rows="5"></textarea><br><br>
