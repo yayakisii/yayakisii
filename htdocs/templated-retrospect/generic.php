@@ -46,23 +46,22 @@
 
 				<form action="input.php" method = "get">
 						社員ID
-						<input type="text" name="staff_id"><br>
+						<input type="text" name="staff_id"><br><br>
 						氏名
-						<input type="text" name="name"><br>
+						<input type="text" name="name"><br><br>
 						パスワード
-						<input type="text" name="pw"><br>
+						<input type="text" name="pw"><br><br>
 						顔画像のファイル名を入力してください
-						<input size="30" type="file" name="photo"><br>
+						<input size="30" type="file" name="photo"><br><br>
 						役職
 						<select name="post">
 							<option value="1">部長</option>
 							<option value="2">マネージャー</option>
 							<option value="3">リーダー</option>
 							<option value="4">スタッフ</option>
-						</select><br>
+						</select><br><br>
 
 						職歴<br>
-							<input type="checkbox" name="work_experience" value="1">マーケティング
 							<?php
 							$dsn = 'mysql:dbname=yayakasii;host=localhost:8889';
 							$user = 'root';
@@ -74,6 +73,7 @@
 
 							    $sql = 'select * from occupation';
 							    foreach ($dbh->query($sql) as $row) {
+							    	echo "<input type='checkbox' name='occupation' value='" . $row['occupation_id'] . "'>";
 							        print($row['occupation_name'].'<br>');
 							    }
 							}catch (PDOException $e){
@@ -82,7 +82,42 @@
 							}
 
 							$dbh = null;
-							?>	
+							?><br>
+
+						ITスキル<br>
+							<?php
+							$dsn = 'mysql:dbname=yayakasii;host=localhost:8889';
+							$user = 'root';
+							$password = 'root';
+							try{
+							    $dbh = new PDO($dsn, $user, $password);
+
+							    $dbh->query('SET NAMES utf8');
+
+							    $sql = 'select * from tools';
+							    $num = 0;
+							    foreach ($dbh->query($sql) as $row) {
+							    	echo "<input type='checkbox' name='tools' value='" . $row['tool_id'] . "'>";
+							        print($row['tool_name']);
+							        $num++;	
+							        if($num == 5){
+							        	echo "<br>";
+							        	$num = 0;
+							        }
+							    }
+							}catch (PDOException $e){
+							    print('Error:'.$e->getMessage());
+							    die();
+							}
+
+							$dbh = null;
+							?><br><br>
+
+						やりたいプロジェクト内容<br>
+						<textarea name="project" cols="50" rows="5"></textarea><br><br>
+
+						<input type="submit" value="送信">
+
 						
 						
 						
