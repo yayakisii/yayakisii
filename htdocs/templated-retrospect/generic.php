@@ -27,6 +27,9 @@
          }else if(frm.elements["name"].value==""){
             alert("名前を入力してください");
             return false;
+         }else if(frm.elements["pw"].value==""){
+            alert("パスワードを入力してください");
+            return false;
          }else if(frm.elements["post"].value==""){
             alert("役職を入力してください");
             return false;
@@ -75,7 +78,7 @@
 						<input type="text" name="name" value="山田太郎"><br><br>
 						パスワード<span style="color: red;">（必須）</span>
 						<input type="password" name="pw" value="aaaaaa"><br><br>
-						顔画像のファイル名を入力してください<br>
+						顔画像のファイル名を入力してください（任意）<br>
 						<input size="30" type="file" name="picture"><br><br>
 						役職<span style="color: red;">（必須）</span>
 						<select name="post">
