@@ -69,15 +69,15 @@
 				</div>
 
 				<form action="input.php" method = "post" onsubmit="return checker(this)">
-						社員ID（必須）
+						社員ID<span style="color: red;">（必須）</span>
 						<input type="text" name="staff_id" value="5"><br><br>
-						氏名（必須）
+						氏名<span style="color: red;">（必須）</span>
 						<input type="text" name="name" value="山田太郎"><br><br>
-						パスワード（必須）
+						パスワード<span style="color: red;">（必須）</span>
 						<input type="password" name="pw" value="aaaaaa"><br><br>
 						顔画像のファイル名を入力してください<br>
 						<input size="30" type="file" name="picture"><br><br>
-						役職（必須）
+						役職<span style="color: red;">（必須）</span>
 						<select name="post">
 							<option value="1">部長</option>
 							<option value="2">マネージャー</option>
