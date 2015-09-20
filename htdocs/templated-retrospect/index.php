@@ -77,7 +77,7 @@
 						<h2>人材検索</h2>
 						<p>条件を入力してください。</p>
 					</header>
-			<form action="result.php" method="get">
+			<form action="insert.php" method="get">
 				
 					<p>スキル検索(3つまで選べます)</p>
 					<?php
