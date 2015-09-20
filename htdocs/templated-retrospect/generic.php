@@ -82,10 +82,10 @@
 							<option value="1">部長</option>
 							<option value="2">マネージャー</option>
 							<option value="3">リーダー</option>
-							<option value="4">スタッフ</option>
+							<option value="4">エンジニア</option>
 						</select><br><br>
 
-						職種　詳しくは<a href="diagram_01.png" target="blank">こちら</a><br>
+						職種（任意）　詳しくは<a href="diagram_01.png" target="blank">こちら</a><br>
 						
 							<?php
 							$dsn = 'mysql:dbname=yayakasii;host=localhost:8889';
@@ -114,7 +114,7 @@
 							<th>スキル</th>
 							<th>習熟度</th>
 						</tr>
-						ITスキル<br>
+						ITスキル（任意）<br>
 							<?php
 							$dsn = 'mysql:dbname=yayakasii;host=localhost:8889';
 							$user = 'root';
@@ -139,7 +139,7 @@
 							    echo "</td>";
 							    echo "<td>";
 							    echo "<select name='level1'>";
-							    	echo "<option value='0'>全く使ったことがない";
+							    	echo "<option value='0'>　";
 							    	echo "<option value='1'>レベル１";
 							    	echo "<option value='2'>レベル２";
 							    	echo "<option value='3'>レベル３";
@@ -162,7 +162,7 @@
 							    echo "</td>";
 							    echo "<td>";
 							    echo "<select name='level2'>";
-							    	echo "<option value='0'>全く使ったことがない";
+							    	echo "<option value='0'>";
 							    	echo "<option value='1'>レベル１";
 							    	echo "<option value='2'>レベル２";
 							    	echo "<option value='3'>レベル３";
@@ -185,7 +185,7 @@
 							    echo "</td>";
 							    echo "<td>";
 							    echo "<select name='level3'>";
-							    	echo "<option value='0'>全く使ったことがない";
+							    	echo "<option value='0'>　";
 							    	echo "<option value='1'>レベル１";
 							    	echo "<option value='2'>レベル２";
 							    	echo "<option value='3'>レベル３";
@@ -202,7 +202,7 @@
 							?></table><br>
 					</div>
 
-						やりたいプロジェクト内容<br>
+						やりたいプロジェクト内容（任意）<br>
 						<textarea name="project" cols="50" rows="5">aaaaaaaa</textarea><br><br>
 
 						<input type="submit" value="送信">
