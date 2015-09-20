@@ -114,6 +114,12 @@ $main["pw"] = $pw;
 	
 <table border=1>
 	<tr>
+		<td>社員ID</td><td><?php echo $array[0]; ?></td>
+	</tr>
+	<tr>
+		<td>パスワード</td><td>（セキュリティのため隠しています）</td>
+	</tr>
+	<tr>
 		<td>名前</td><td><?php echo $array[1]; ?></td>
 	</tr>
 	<tr>
