@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: 2015 年 9 月 19 日 16:56
+-- Generation Time: 2015 年 9 月 20 日 09:09
 -- サーバのバージョン： 5.5.42
 -- PHP Version: 5.6.10
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `yayakasii`
 --
-CREATE DATABASE IF NOT EXISTS `yayakasii` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `yayakasii`;
 
 -- --------------------------------------------------------
 
@@ -28,11 +26,11 @@ USE `yayakasii`;
 -- テーブルの構造 `main`
 --
 
-DROP TABLE IF EXISTS `main`;
 CREATE TABLE `main` (
   `staff_id` int(11) NOT NULL,
   `name` text NOT NULL,
   `pw` text NOT NULL,
+  `picture` text NOT NULL,
   `post` text NOT NULL COMMENT '役職',
   `work_experience` text NOT NULL COMMENT '職歴',
   `tools` text NOT NULL COMMENT '使えるツール',
@@ -40,17 +38,23 @@ CREATE TABLE `main` (
   `wish` text NOT NULL COMMENT '本人の希望',
   `project` text NOT NULL COMMENT '参加したプロジェクト',
   `memo` text NOT NULL COMMENT '面談メモ'
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
+--
+-- 挿入前にテーブルを空にする `main`
+--
+
+TRUNCATE TABLE `main`;
 --
 -- テーブルのデータのダンプ `main`
 --
 
-INSERT INTO `main` (`staff_id`, `name`, `pw`, `post`, `work_experience`, `tools`, `learning_level`, `wish`, `project`, `memo`) VALUES
-(1, 'admin', 'admin', '1', '2 3', '', '', '', '', ''),
-(2, 'aaaa', 'aaaa', '2', '', '3 5 12 20', '1 1 1 1', '2', '1 2', '特になしー'),
-(3, 'bbbb', 'bbbb', '2', '', '4 20', '4 4', '3', '2', ''),
-(4, 'cccc', 'cccc', '3', '1 2', '30 1 3 2', '2 3 4 1', '2', '1', '');
+INSERT INTO `main` (`staff_id`, `name`, `pw`, `picture`, `post`, `work_experience`, `tools`, `learning_level`, `wish`, `project`, `memo`) VALUES
+(1, 'admin', 'admin', '', '1', '2 3', '', '', '', '', ''),
+(2, 'aaaa', 'aaaa', '', '2', '', '3 5 12 20', '1 1 1 1', '2', '1 2', '特になしー'),
+(3, 'bbbb', 'bbbb', '', '2', '', '4 20', '4 4', '3', '2', ''),
+(4, 'cccc', 'cccc', '', '3', '1 2', '30 1 3 2', '2 3 4 1', '2', '1', ''),
+(5, '山田太郎', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', '_', 'b', '  ', '1  ', '1  ', 'aaaaaaaa', '', '');
 
 -- --------------------------------------------------------
 
@@ -58,12 +62,16 @@ INSERT INTO `main` (`staff_id`, `name`, `pw`, `post`, `work_experience`, `tools`
 -- テーブルの構造 `occupation`
 --
 
-DROP TABLE IF EXISTS `occupation`;
 CREATE TABLE `occupation` (
   `occupation_id` int(11) NOT NULL,
   `occupation_name` text NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
+--
+-- 挿入前にテーブルを空にする `occupation`
+--
+
+TRUNCATE TABLE `occupation`;
 --
 -- テーブルのデータのダンプ `occupation`
 --
@@ -87,20 +95,24 @@ INSERT INTO `occupation` (`occupation_id`, `occupation_name`) VALUES
 -- テーブルの構造 `post`
 --
 
-DROP TABLE IF EXISTS `post`;
 CREATE TABLE `post` (
   `post_id` int(11) NOT NULL,
   `post_name` text NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
+-- 挿入前にテーブルを空にする `post`
+--
+
+TRUNCATE TABLE `post`;
+--
 -- テーブルのデータのダンプ `post`
 --
 
 INSERT INTO `post` (`post_id`, `post_name`) VALUES
 (1, '部長'),
-(2, 'リーダ'),
-(3, 'マネージャ'),
+(2, 'マネージャ'),
+(3, 'リーダ'),
 (4, 'エンジニア');
 
 -- --------------------------------------------------------
@@ -109,7 +121,6 @@ INSERT INTO `post` (`post_id`, `post_name`) VALUES
 -- テーブルの構造 `project`
 --
 
-DROP TABLE IF EXISTS `project`;
 CREATE TABLE `project` (
   `project_id` int(11) NOT NULL,
   `project_name` text NOT NULL,
@@ -120,6 +131,11 @@ CREATE TABLE `project` (
   `tools` text NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
+--
+-- 挿入前にテーブルを空にする `project`
+--
+
+TRUNCATE TABLE `project`;
 --
 -- テーブルのデータのダンプ `project`
 --
@@ -134,12 +150,16 @@ INSERT INTO `project` (`project_id`, `project_name`, `start`, `end`, `member`, `
 -- テーブルの構造 `tools`
 --
 
-DROP TABLE IF EXISTS `tools`;
 CREATE TABLE `tools` (
   `tool_id` int(3) NOT NULL,
   `tool_name` text NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
+--
+-- 挿入前にテーブルを空にする `tools`
+--
+
+TRUNCATE TABLE `tools`;
 --
 -- テーブルのデータのダンプ `tools`
 --
@@ -246,7 +266,7 @@ ALTER TABLE `tools`
 -- AUTO_INCREMENT for table `main`
 --
 ALTER TABLE `main`
-  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `occupation`
 --
