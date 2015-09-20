@@ -71,6 +71,10 @@ $work_experience = $_POST["work_experience"];
 							    foreach ($dbh->query($sql) as $row) 
 							    	$tools[] = $row['tool_name'];
 							    	
+							    $sql = 'select * from post';
+							    foreach ($dbh->query($sql) as $row) 
+							    	$post[] = $row['post_name'];
+
 							    $dbh = null;	
 							}catch (PDOException $e){
 							    print('Error:'.$e->getMessage());
@@ -78,8 +82,8 @@ $work_experience = $_POST["work_experience"];
 							}
 	//ジョイントするよ
 
-		$tool_name = $tools[$array[3]] ." " .	 $tools[$array[4]] ." " .	 $tools[$array[5]];
-		$occupation_name = $occupation[$work_experience[0]] ." " .$occupation[$work_experience[1]] ." " .$occupation[$work_experience[2]];
+		$tool_name = $tools[$array[3]-1] ." " .	 $tools[$array[4]-1] ." " .	 $tools[$array[5]-1];
+		$occupation_name = $occupation[$work_experience[0]-1] ." " .$occupation[$work_experience[1]-1] ." " .$occupation[$work_experience[2]-1];
 		$level_tmp = $array[6] ." " .$array[7] ." " .$array[8];
 
 //echo "test:" .$level_tmp;
@@ -108,12 +112,12 @@ $main["pw"] = $pw;
 	<input id="main" type="hidden" name="main" value="<?php echo implode("\t",$main);?>">
 	<input id="flag" type="hidden" name="flag" value="1">
 	
-<table>
+<table border=1>
 	<tr>
 		<td>名前</td><td><?php echo $array[1]; ?></td>
 	</tr>
 	<tr>
-		<td>役職</td><td><?php echo $array[2]; ?></td>
+		<td>役職</td><td><?php echo $post[$array[2]-1]; ?></td>
 	</tr>
 	<tr>
 		<td>職種</td><td><?php echo $occupation_name; ?></td>
@@ -125,15 +129,14 @@ $main["pw"] = $pw;
 		<td>習熟度</td><td><?php  echo $level_tmp;?></td>
 	</tr>
 	<tr>
-		<td>本人の希望</td><td><?php echo $array[9]; ?></td>
+		<td>やりたいプロジェクト内容</td><td><?php echo $array[9]; ?></td>
 	</tr>
 	<tr>
 		<td>顔写真</td><td><?php echo $file_name; ?></td>
 	</tr>
-	<tr>
-			<td><input type="submit" value="送信"></form></td>
-	</tr>
-</table>
+	</table>
+	<br>
+<input type="submit" value="送信"></form>
 
 </body>
 </html>
