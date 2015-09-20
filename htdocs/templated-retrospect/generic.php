@@ -22,7 +22,7 @@
 		<script type="text/javascript">
     function checker(frm){
         if(frm.elements["staff_id"].value==""){
-            alert("社員idを入力してください");
+            alert("社員IDを入力してください");
             return false;
          }else if(frm.elements["name"].value==""){
             alert("名前を入力してください");
@@ -69,15 +69,15 @@
 				</div>
 
 				<form action="input.php" method = "post" onsubmit="return checker(this)">
-						社員ID
+						社員ID（必須）
 						<input type="text" name="staff_id" value="5"><br><br>
-						氏名
+						氏名（必須）
 						<input type="text" name="name" value="山田太郎"><br><br>
-						パスワード
+						パスワード（必須）
 						<input type="password" name="pw" value="aaaaaa"><br><br>
 						顔画像のファイル名を入力してください<br>
 						<input size="30" type="file" name="picture"><br><br>
-						役職
+						役職（必須）
 						<select name="post">
 							<option value="1">部長</option>
 							<option value="2">マネージャー</option>
@@ -85,7 +85,8 @@
 							<option value="4">スタッフ</option>
 						</select><br><br>
 
-						職種<br>
+						職種　詳しくは<a href="diagram_01.png" target="blank">こちら</a><br>
+						
 							<?php
 							$dsn = 'mysql:dbname=yayakasii;host=localhost:8889';
 							$user = 'root';
