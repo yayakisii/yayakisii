@@ -19,18 +19,22 @@ $array = array('staff_id','name','post','tool1','tool2','tool3','level1','level2
 
 foreach ($array as $key => $value) {
     if(!empty($_POST[$value])){
-   	echo $array[$key] .":";
+//   	echo $array[$key] .":";
 		$array[$key] = convString($_POST[$value]);
-		echo $_POST[$value] ." <br>";
+//		echo $_POST[$value] ." <br>";
 	}else{
 		$array[$key] = "";
 	}
 }
 
+$pw = $_POST["pw"];
+$pw = md5($pw);
+//echo "pw:" .$pw ."<br>";
+
 //空欄時の例外処理わからんので保留
 $work_experience = $_POST["work_experience"];
-	print_r($work_experience);
-	print_r($array);
+//	print_r($work_experience);
+//	print_r($array);
 
 //顔写真 うまくいってないので後でなんとかする．
 	if((!empty($_FILES["picture"]["tmp_name"])) && ($_FILES["picture"]["size"]>="209715200")){	//ファイルサイズが大きすぎるとemptyになる　値は適当なので要検証
@@ -44,7 +48,7 @@ $work_experience = $_POST["work_experience"];
 			}
 	}else{ //ファイルサイズ大き過ぎのときと，そもそもファイルが選択されていないときのエラー分けてないです．起きたときの私に任せた．
 		$flag_file="1";
-		$file_name = "だめでしたー";
+		$file_name = "画像を添付できませんでした";
 	}
 
 //入力内容の取得ここまで
@@ -78,7 +82,7 @@ $work_experience = $_POST["work_experience"];
 		$occupation_name = $occupation[$work_experience[0]] ." " .$occupation[$work_experience[1]] ." " .$occupation[$work_experience[2]];
 		$level_tmp = $array[6] ." " .$array[7] ." " .$array[8];
 
-echo "test:" .$level_tmp;
+//echo "test:" .$level_tmp;
 
 $main["staff_id"] = $array[0];
 $main["name"] = $array[1];
@@ -88,8 +92,9 @@ $main["level"] = $level_tmp;
 $main["occupation"] = $work_experience[0] ." " .$work_experience[1] ." " .$work_experience[2];
 $main["wish"] = $array[9];
 $main["picture"] =  $staff_id ."_" .$_FILES["picture"]["name"]; 
+$main["pw"] = $pw;
 
-print_r($main);
+//print_r($main);
 ?>
 
 
@@ -138,13 +143,36 @@ print_r($main);
 
 echo "welcome to sousin page<br>";
 $main = explode("\t",$_POST["main"]);
-	print_r($main);
+//	print_r($main);
 	
 //成形しましょう
 
 							$dsn = 'mysql:dbname=yayakasii;host=localhost:8889';
 							$user = 'root';
 							$password = 'root';
+							
+							$check=0;
+//pwとidの認証するよ
+							try{
+							    $dbh = new PDO($dsn, $user, $password);
+
+							    $dbh->query('SET NAMES utf8');
+							    
+							    $sql = 'SELECT * FROM `main` WHERE `staff_id` = \'' .$main[0] .'\' AND `pw` LIKE \'' .$main[8] .'\'';
+							    
+							    foreach ($dbh->query($sql) as $value){
+							    	 $check=1;
+							    	 echo "認証できました<br>";
+								}
+									$dbh = null;							    
+							    }catch (PDOException $e){
+						    print('Error:'.$e->getMessage());
+							    die();
+							    	echo "社員IDとパスワードをご確認ください<br>";
+							}
+
+if($check==1){							    							
+//認証パスしたら書き込むよ							
 							try{
 							    $dbh = new PDO($dsn, $user, $password);
 
@@ -152,13 +180,18 @@ $main = explode("\t",$_POST["main"]);
 
 							    $sql = 'UPDATE `yayakasii`.`main` SET `picture` = \'' .$main[7] .'\', `work_experience` = \'' .$main[5] .'\', `tools` = \'' .$main[3] .'\', `learning_level` = \'' .$main[4] .'\' , `wish` = \'' .$main[6] .'\' WHERE `main`.`staff_id` = \'' .$main[0] .'\'';
 	
-		echo $sql;
+//		echo $sql;
 								$dbh->query($sql);
 							    	
 							    $dbh = null;	
+								echo "登録できました";
 							}catch (PDOException $e){
 							    print('Error:'.$e->getMessage());
 							    die();
 							}
+							
+}else{
+	echo "社員IDとパスワードをご確認ください";
+}
 
 }?>
