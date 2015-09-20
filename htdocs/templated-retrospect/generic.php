@@ -13,8 +13,33 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		
+		<!--memo $array = array('staff_id','name','post','tool1','tool2','tool3','level1','level2','level3','project');-->
+				
 	</head>
 	<body>
+
+		<script type="text/javascript">
+    function checker(frm){
+        if(frm.elements["staff_id"].value==""){
+            alert("社員idを入力してください");
+            return false;
+         }else if(frm.elements["name"].value==""){
+            alert("名前を入力してください");
+            return false;
+         }else if(frm.elements["post"].value==""){
+            alert("役職を入力してください");
+            return false;
+         }else if(frm.elements["work_experience"].value==""){
+            alert("職種を入力してください");
+            return false;
+        }else{
+            /* TRUEを返してフォーム送信 */
+            return true;
+        }
+    }
+	</script>
+
 
 		<!-- Header -->
 			<header id="header">
@@ -43,15 +68,15 @@
 
 				</div>
 
-				<form action="input.php" method = "get">
+				<form action="input.php" method = "post" onsubmit="return checker(this)">
 						社員ID
-						<input type="text" name="staff_id"><br><br>
+						<input type="text" name="staff_id" value="5"><br><br>
 						氏名
-						<input type="text" name="name"><br><br>
+						<input type="text" name="name" value="山田太郎"><br><br>
 						パスワード
-						<input type="password" name="pw"><br><br>
+						<input type="password" name="pw" value="aaaaaa"><br><br>
 						顔画像のファイル名を入力してください<br>
-						<input size="30" type="file" name="photo"><br><br>
+						<input size="30" type="file" name="picture"><br><br>
 						役職
 						<select name="post">
 							<option value="1">部長</option>
@@ -72,7 +97,7 @@
 
 							    $sql = 'select * from occupation';
 							    foreach ($dbh->query($sql) as $row) {
-							    	echo "<input type='checkbox' name='occupation' value='" . $row['occupation_id'] . "'>";
+							    	echo "<input type='checkbox' name='work_experience[]' value='" . $row['occupation_id'] . "'>";
 							        print($row['occupation_name'].'<br>');
 							    }
 							}catch (PDOException $e){
@@ -177,7 +202,7 @@
 					</div>
 
 						やりたいプロジェクト内容<br>
-						<textarea name="project" cols="50" rows="5"></textarea><br><br>
+						<textarea name="project" cols="50" rows="5">aaaaaaaa</textarea><br><br>
 
 						<input type="submit" value="送信">
 
