@@ -13,7 +13,6 @@ function convOther($string) {
 }
 
 if(empty($_POST['flag'])){
-//フラグ立てて，確認フェーズか書き込みフェーズか分岐させる　予定．なんにも書いてない．
 
 $array = array('staff_id','name','post','tool1','tool2','tool3','level1','level2','level3','project');
 
@@ -129,7 +128,7 @@ $main["pw"] = $pw;
 		<td>職種</td><td><?php echo $occupation_name; ?></td>
 	</tr>
 	<tr>
-		<td>使えるツール</td><td><?php echo $tool_name; ?></td>	<!-----見にくいので，元気なときに何とかする------>
+		<td>ITスキル</td><td><?php echo $tool_name; ?></td>	<!-----見にくいので，元気なときに何とかする------>
 	</tr>
 	<tr>
 		<td>習熟度</td><td><?php  echo $level_tmp;?></td>
