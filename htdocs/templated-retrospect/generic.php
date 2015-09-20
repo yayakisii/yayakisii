@@ -117,7 +117,7 @@
 							<th>スキル</th>
 							<th>習熟度</th>
 						</tr>
-						ITスキル（任意）<br>
+						ITスキル（任意）習熟度については<a href="level.html" target="blank">こちら</a><br>
 							<?php
 							$dsn = 'mysql:dbname=yayakasii;host=localhost:8889';
 							$user = 'root';
